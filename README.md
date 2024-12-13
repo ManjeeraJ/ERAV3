@@ -1,2 +1,1 @@
-# ERAV3
-This 30-session course is designed to transform students into full-stack AI engineers, proficient in both the development and deployment of AI models
+This 30-session course is designed to transform students into full-stack AI engineers, proficient in both the development and deployment of AI models. The curriculum integrates foundational knowledge with advanced topics, covering neural networks, transformers, LLMs, and GenAI models. Practical skills are emphasized through continuous integration of MLOps practices, frontend and backend development, and deployment strategies.

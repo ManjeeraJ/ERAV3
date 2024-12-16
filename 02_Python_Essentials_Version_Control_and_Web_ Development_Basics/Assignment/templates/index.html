@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Selector & File Upload</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box animal-box">
+            <h2>Select Animal</h2>
+            <div class="checkbox-group">
+                <label>
+                    <input type="radio" name="animal" value="cat"> Cat
+                </label>
+                <label>
+                    <input type="radio" name="animal" value="dog"> Dog
+                </label>
+                <label>
+                    <input type="radio" name="animal" value="elephant"> Elephant
+                </label>
+            </div>
+            <div id="image-container"></div>
+        </div>
+
+        <div class="box upload-box">
+            <h2>Upload File</h2>
+            <input type="file" id="file-input">
+            <button onclick="uploadFile()">Upload</button>
+            <div id="file-info"></div>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html> 

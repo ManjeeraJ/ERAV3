@@ -18,7 +18,7 @@ jobs:
         working-directory: 05_Building_First_Neural_Networks_and_MLOps_Basics
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     
     - name: Debug Information
       run: |
@@ -27,7 +27,7 @@ jobs:
         ls -la
         
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10.11'
         
@@ -45,7 +45,7 @@ jobs:
         pytest test_model.py -v
         
     - name: Upload trained model
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: trained-model
         path: 05_Building_First_Neural_Networks_and_MLOps_Basics/model_weights_*.pth

@@ -16,5 +16,4 @@ class SimpleCNN(nn.Module):
         x = x.view(-1, 32 * 7 * 7)
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
-        
         return x 

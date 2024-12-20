@@ -32,6 +32,7 @@ def test_gap_or_fc():
                  for module in model.modules())
     has_fc = any(isinstance(module, torch.nn.Linear) for module in model.modules())
     assert has_gap or has_fc, "Model doesn't use either Global Average Pooling or Fully Connected layers"
+    
 
 if __name__ == "__main__":
     pytest.main([__file__]) 

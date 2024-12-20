@@ -3,10 +3,11 @@ name: ML Pipeline
 on:
   push:
     paths:
-      - 05_Building_First_Neural_Networks_and_MLOps_Basics/**
+      - '05_Building_First_Neural_Networks_and_MLOps_Basics/**'
     branches:
       - main
-      - master  # Including both main and master for compatibility
+      - master
+  workflow_dispatch:
 
 jobs:
   build-and-test:
@@ -19,6 +20,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
+    - name: Debug Information
+      run: |
+        echo "GitHub ref: ${{ github.ref }}"
+        echo "Current directory: $PWD"
+        ls -la
+        
     - name: Set up Python
       uses: actions/setup-python@v2
       with:

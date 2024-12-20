@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MNIST Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Training Results</h1>
+        <div id="results">
+            <p>Test Loss: <span id="test-loss"></span></p>
+            <p>Accuracy: <span id="accuracy"></span>%</p>
+        </div>
+        <div id="samples" class="samples-grid"></div>
+    </div>
+
+    <script>
+        fetch('/static/results.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('test-loss').textContent = data.test_loss.toFixed(4);
+                document.getElementById('accuracy').textContent = data.accuracy.toFixed(2);
+                
+                const samplesDiv = document.getElementById('samples');
+                data.samples.forEach(sample => {
+                    const div = document.createElement('div');
+                    div.className = 'sample';
+                    
+                    // Create canvas and set its size
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 28;
+                    canvas.height = 28;
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Create image data
+                    const imageData = ctx.createImageData(28, 28);
+                    for (let i = 0; i < 28; i++) {
+                        for (let j = 0; j < 28; j++) {
+                            const idx = (i * 28 + j);
+                            const pixelValue = Math.floor(sample.image[i][j] * 255); // Scale to 0-255
+                            const dataIdx = idx * 4;
+                            imageData.data[dataIdx] = pixelValue;     // R
+                            imageData.data[dataIdx + 1] = pixelValue; // G
+                            imageData.data[dataIdx + 2] = pixelValue; // B
+                            imageData.data[dataIdx + 3] = 255;        // A
+                        }
+                    }
+                    
+                    // Put image data on canvas
+                    ctx.putImageData(imageData, 0, 0);
+                    
+                    const correct = sample.true_label === sample.pred_label;
+                    div.innerHTML = `
+                        <img src="${canvas.toDataURL()}" />
+                        <p class="label ${correct ? 'correct' : 'incorrect'}">
+                            True: ${sample.true_label}<br>
+                            Pred: ${sample.pred_label}
+                        </p>
+                    `;
+                    samplesDiv.appendChild(div);
+                });
+            });
+    </script>
+</body>
+</html> 

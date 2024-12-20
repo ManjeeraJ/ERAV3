@@ -1,0 +1,11 @@
+Assignment/
+├── static/
+│   └── style.css
+├── templates/
+│   ├── index.html
+│   └── results.html
+├── model.py
+├── train.py
+├── app.py
+├── requirements.txt
+└── HowTo.md 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Processing App</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h2>1. Load Text File</h2>
+            <input type="file" id="fileInput" accept=".txt">
+            <button onclick="loadFile()">Submit</button>
+            <div id="originalText" class="result"></div>
+        </div>
+
+        <div class="box">
+            <h2>2. Preprocess Text</h2>
+            <button onclick="preprocessText()" id="preprocessBtn" disabled>Submit</button>
+            <div id="preprocessedText" class="result"></div>
+        </div>
+
+        <div class="box">
+            <h2>3. Augment Text</h2>
+            <button onclick="augmentText()" id="augmentBtn" disabled>Submit</button>
+            <div id="augmentedText" class="result"></div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', path='/script.js') }}"></script>
+</body>
+</html> 

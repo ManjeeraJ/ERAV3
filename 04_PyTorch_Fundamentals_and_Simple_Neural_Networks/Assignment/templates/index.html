@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MNIST Training Progress</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>MNIST CNN Training Progress</h1>
+        <div id="training-info">
+            <p>Current Epoch: <span id="epoch">0</span></p>
+            <p>Current Batch: <span id="batch">0</span></p>
+        </div>
+        <div id="loss-plot"></div>
+    </div>
+
+    <script>
+        function updateTrainingState() {
+            fetch('/training_state')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('epoch').textContent = data.epoch;
+                    document.getElementById('batch').textContent = data.batch;
+                    
+                    const trace = {
+                        y: data.losses,
+                        type: 'scatter',
+                        mode: 'lines',
+                        name: 'Training Loss'
+                    };
+                    
+                    const layout = {
+                        title: 'Training Loss',
+                        xaxis: { title: 'Batch' },
+                        yaxis: { title: 'Loss' }
+                    };
+                    
+                    Plotly.newPlot('loss-plot', [trace], layout);
+                });
+        }
+
+        // Update every second
+        setInterval(updateTrainingState, 1000);
+    </script>
+</body>
+</html> 

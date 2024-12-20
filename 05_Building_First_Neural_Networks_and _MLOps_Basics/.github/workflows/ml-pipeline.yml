@@ -3,7 +3,7 @@ name: ML Pipeline
 on:
   push:
     paths:
-      - '05_Building_First_Neural_Networks_and_MLOps_Basics/**'
+      - 05_Building_First_Neural_Networks_and_MLOps_Basics/**
     branches:
       - main
       - master  # Including both main and master for compatibility
